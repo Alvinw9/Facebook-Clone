@@ -89,6 +89,18 @@ if ( isset($_POST['reg_user']) ) {
     
     $user_check = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
           
+    $num_rows = mysqli_num_rows($user_check);
+    
+    if ( $num_rows > 0 ) {
+        array_push($error_array, "Username already in exists");
+    }
+   
+    if ( strlen($username) > 20 || strlen($username) < 2 ) {
+        array_push($error_array, "Username must be between 2 and 20");
+    } else if ( preg_match('/[^A-Za-z0-9]/', $username) ) {
+        array_push($error_array, "Your username can only contain english characters or numbers");
+    }
+    
 }
 
 ?>

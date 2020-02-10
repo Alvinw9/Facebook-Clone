@@ -129,6 +129,11 @@ include 'includes/form_handlers/register_handler.php';
                                             <input class="form-username form-control" type="text" name="username" placeholder="Username (Cannot be changed)" value="<?php if (isset($_SESSION['username'])) {
                                                 echo $_SESSION['username'];
                                             } ?>" required>
+                                            <?php
+                                            if (in_array("Username already exists", $error_array)) echo "Username already exists";
+                                            else if (in_array("Username must be between 2 and 20", $error_array)) echo "Username must be between 2 and 20";
+                                            else if (in_array("Your username can only contain english characters or numbers", $error_array)) echo "Your username can only contain english characters or numbers";
+                                            ?>
                                         </div>
 
                                         <!-- Email -->
@@ -183,7 +188,7 @@ include 'includes/form_handlers/register_handler.php';
                                             <tr>
                                                 <td>Birthday
                                                 &nbsp;&nbsp;
-                                                <input type="date" name="dob" requred>
+                                                <input type="date" name="dob" required>
                                                 </td>
                                             </tr>
                                         </div><br>
