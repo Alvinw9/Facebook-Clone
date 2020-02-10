@@ -52,7 +52,7 @@ include 'includes/form_handlers/register_handler.php';
                         <div class="col-sm-8 col-sm-offset-2 text">
                             <h1>Create an account. It's free to register!</h1>
                             <div class="description">
-                                <p>Sign up and start sharing your photos and updates with your friends.
+                                <p>Sign up and start sharing your photos and updates with your friend!
                             	</p>
                             </div>
                         </div>
