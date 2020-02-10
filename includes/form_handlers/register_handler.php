@@ -1,4 +1,4 @@
-<? php
+<?php 
 
 $fname = "";
 $lname = "";
@@ -14,57 +14,81 @@ $error_array = array();
 
 if ( isset($_POST['reg_user']) ) {
     
-    // first name
+    //First Name 
     $fname = strip_tags($_POST['reg_fname']);
     $fname = str_replace(' ', '', $fname);
     $fname = ucfirst(strtolower($fname));
     $_SESSION['reg_fname'] = $fname;
     
-    // last name
+    //Last Name 
     $lname = strip_tags($_POST['reg_lname']);
     $lname = str_replace(' ', '', $lname);
-    $lname = ucfirst(strtolower($flame));
+    $lname = ucfirst(strtolower($lname));
     $_SESSION['reg_lname'] = $lname;
     
-    // username
+    //Username
     $username = strip_tags($_POST['username']);
     $username = str_replace(' ', '', $username);
     $username = ucfirst(strtolower($username));
     $_SESSION['username'] = $username;
     
-    // email
+    //Email
     $email = strip_tags($_POST['reg_email']);
     $email = str_replace(' ', '', $email);
     $email = ucfirst(strtolower($email));
     $_SESSION['reg_email'] = $email;
     
-    // email2
+    //Email2
     $email2 = strip_tags($_POST['reg_email2']);
     $email2 = str_replace(' ', '', $email2);
     $email2 = ucfirst(strtolower($email2));
     $_SESSION['reg_email2'] = $email2;
     
-    // password
-    $password = strip_tags($_POST['password']);
+    //Password
+    $password = strip_tags($_POST['reg_password']);
     $password = str_replace(' ', '', $password);
     $password = ucfirst(strtolower($password));
-    $_SESSION['password'] = $password;
-    
-    // password2
-    $password2 = strip_tags($_POST['password2']);
+    $_SESSION['reg_password'] = $password;
+
+    //Password2
+    $password2 = strip_tags($_POST['reg_password2']);
     $password2 = str_replace(' ', '', $password2);
     $password2 = ucfirst(strtolower($password2));
-    $_SESSION['password2'] = $password2;
+    $_SESSION['reg_password2'] = $password2;
     
-    // date of birth
+    //Date of Birth 
     $dob = $_POST['dob'];
     
-    // gener
-    $gender = &_POST['gender'];
+    //Gender
+    $gender = $_POST['gender'];
     
-    // signup date
+    //Signup Date
     $date = date("Y-m-d");
     
-}
+    if( $email == $email2 ){
+        
+        if( filter_var($email, FILTER_VALIDATE_EMAIL) ){
+            
+            $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+            
+            $e_check = mysqli_query($con, "SELECT email FROM users WHERE email='$email'"); 
+            
+            $num_rows = mysqli_num_rows($e_check);
+            
+            if($num_rows > 0){
+                array_push($error_array, "Email already in use");
+            }
+            
+        } else{
+            array_push($error_array, "Email is invalid format");
+        } 
+        
+    } else{
+        array_push($error_array, "Email doesn't match");
+    }
     
+    $user_check = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
+          
+}
+
 ?>

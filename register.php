@@ -1,3 +1,12 @@
+<?php
+
+include 'database/config.php';
+include 'includes/form_handlers/register_handler.php';
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,6 +145,11 @@
                                             <input class="form-confirm-email form-control" type="text" name="reg_email2" placeholder="Confirm Email" value="<?php if (isset($_SESSION['reg_email2'])) {
                                                 echo $_SESSION['reg_email2'];
                                             } ?>" required>
+                                            <?php
+                                            if (in_array("Email already in use", $error_array)) echo "Email already in use";
+                                            else if (in_array("Email is invalid format", $error_array)) echo "Email is invalid format";
+                                            else if (in_array("Email doesn't match", $error_array)) echo "Email doesn't match";
+                                            ?>
                                         </div>
                                         
                                         <!-- Password -->
