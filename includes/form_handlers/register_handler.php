@@ -123,6 +123,21 @@ if ( isset($_POST['reg_user']) ) {
         array_push($error_array, "Your password must be between 5 and 30 characters or numbers");
     }
     
+    if ( empty($error_array) ) {
+        $password = md5($password);
+    
+        if ( $gender == "Male" ) {
+            $profile_pic = "assets/images/profile_pics/defaults/male.png";
+            $cover_pic = "assets/images/cover_pics/malcov.jpg"
+        }
+
+        if ( $gender == "Female" ) {
+            $profile_pic = "assets/images/profile_pics/defaults/female.png";
+            $cover_pic = "assets/images/cover_pics/femcov.jpg"
+        }
+        
+    }
+    
 }
 
 ?>
