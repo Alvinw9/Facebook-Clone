@@ -113,6 +113,9 @@ include 'includes/form_handlers/register_handler.php';
                                             <input class="form-first-name form-control" type="text" name="reg_fname" placeholder="First Name" value="<?php if (isset($_SESSION['reg_fname'])) {
                                                 echo $_SESSION['reg_fname'];
                                             } ?>" required>
+                                            <?php
+                                             if (in_array("Your first name must be between 2 and 25 characters", $error_array)) echo "Your first name must be between 2 and 25 characters";
+                                             ?>
 				                        </div>
 				                        
 				                        <!-- Last Name -->
@@ -121,6 +124,9 @@ include 'includes/form_handlers/register_handler.php';
                                             <input class="form-last-name form-control" type="text" name="reg_lname" placeholder="Last Name" value="<?php if (isset($_SESSION['reg_lname'])) {
                                                 echo $_SESSION['reg_lname'];
                                             } ?>" required>
+                                            <?php
+                                             if (in_array("Your last name must be between 2 and 25 characters", $error_array)) echo "Your last name must be between 2 and 25 characters";
+                                             ?>
 				                        </div>
 				                    
                                         <!-- Username -->
@@ -166,6 +172,11 @@ include 'includes/form_handlers/register_handler.php';
                                         <!-- Confirm Password -->
                                         <div class="form-group">
                                             <input class="form-confirm-password form-control" type="password" name="reg_password2" placeholder="Confirm Password" required>
+                                            <?php
+                                            if (in_array("Your passwords don't match", $error_array)) echo "Your passwords don't match";
+                                            else if (in_array("Your password can only contain english characters or numbers", $error_array)) echo "Your password can only contain english characters or numbers";
+                                            else if (in_array("Your password must be between 5 and 30 characters or numbers", $error_array)) echo "Your password must be between 5 and 30 characters or numbers";
+                                            ?>
                                         </div>
                                         
                                         <!-- Gender -->
