@@ -31,7 +31,7 @@ else{
                 <hr>
                 
                 <a href="account_settings.php"><i style="color:#3875c5;" class="fas fa-cog"></i>&nbsp;Settings</a><br><br>
-                <a href="includes/handlers/logout.php"><i style="color:#3875c5;" class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+                <a href="register.php"><i style="color:#3875c5;" class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
             </div>
         </div> 
         <?php echo $user['first_name']; ?><?php echo "!";?> 
