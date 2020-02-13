@@ -124,18 +124,25 @@ if ( isset($_POST['reg_user']) ) {
     }
     
     if ( empty($error_array) ) {
+        
         $password = md5($password);
     
         if ( $gender == "Male" ) {
             $profile_pic = "assets/images/profile_pics/defaults/male.png";
-            $cover_pic = "assets/images/cover_pics/malcov.jpg"
+            $cover_pic = "assets/images/cover_pics/malcov.jpg";
         }
 
         if ( $gender == "Female" ) {
             $profile_pic = "assets/images/profile_pics/defaults/female.png";
-            $cover_pic = "assets/images/cover_pics/femcov.jpg"
+            $cover_pic = "assets/images/cover_pics/femcov.jpg";
         }
         
+        $query = "INSERT INTO users (first_name, last_name, username, email, dob, gender, password, signup_date, profile_pic, cover_pic, num_posts, num_likes, user_closed, friend_array, address, city, hometown, country, mobile, phone, work) VALUES ('$fname', '$lname', '$username', '$email', '$dob', '$gender', '$password', '$date', '$profile_pic', '$cover_pic', '0', '0', 'no', ',', '$address', '$city', '$hometown', '$country', '$mobile', '$phone', '$work')";
+        mysqli_query($con, $query);
+        
+        $_SESSION['username'] = $username;
+        header('location: index.php');
+                
     }
     
 }
