@@ -141,7 +141,7 @@ if ( isset($_POST['reg_user']) ) {
         mysqli_query($con, $query);
         
         $_SESSION['username'] = $username;
-        header('location: index.php');
+        header('Location: index.php');
                 
     }
     

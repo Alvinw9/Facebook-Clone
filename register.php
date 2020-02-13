@@ -2,6 +2,7 @@
 
 include 'database/config.php';
 include 'includes/form_handlers/register_handler.php';
+include 'includes/form_handlers/login_handler.php';
 
 ?>
 
@@ -72,18 +73,25 @@ include 'includes/form_handlers/register_handler.php';
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form action="login.php" method="POST" class="login-form">
+				                    <form action="register.php" method="POST" class="login-form">
                                        <!-- Email Addresss -->
                                         <div class="form-group">
                                             <label class="sr-only" for="form-email">Email Address</label>
-                                            <input type="text" name="log_email" placeholder="Email Address" class="form-email form-control" required>
+                                            <input type="text" name="log_email" placeholder="Email Address" class="form-email form-control" value="<?php 
+                                            if (isset($_SESSION['log_email'])) {
+                                                echo $_SESSION['log_email'];                         
+                                            } ?>" required>
                                         </div>
                                     
                                         <!-- Password -->
                                         <div class="form-group">
 				                            <label class="sr-only" for="form-password">Password</label>
                                             <input type="password" name="log_password" placeholder="Password" class="form-password form-control" required>
+                                        <?php
+                                        if (in_array("Email or Password was incorrect", $error_array)) echo "Email or Password was incorrect";
+                                        ?>
                                         </div>
+                                        
                                         <button class="btn" type="submit" name="login_button">Sign in!</button>
                                     </form>     
 			                    </div>
